@@ -49,31 +49,3 @@ int main() {
 * Elle fonctionne à bas niveau, sans formattage.
 * Utilisée souvent avec `open`, `read`, `close`, etc.
 
----
-
-### 📚 Exemple avec gestion d'erreur
-
-```c
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdio.h>
-
-int main() {
-    int fd = open("test.txt", O_WRONLY | O_CREAT, 0644);
-    if (fd == -1) {
-        perror("open");
-        return 1;
-    }
-
-    const char *text = "Ceci est un test.\n";
-    ssize_t bytes_written = write(fd, text, 18);
-    if (bytes_written == -1) {
-        perror("write");
-        return 1;
-    }
-
-    close(fd);
-    return 0;
-}
-```
-
